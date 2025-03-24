@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>api2._0.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Ap2.0.Communication\Ap2.0.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\Api2.0.Exceptions\Api2.0.Exceptions.csproj" />
+    <ProjectReference Include="..\Api2.0.Domain\Api2.0.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
