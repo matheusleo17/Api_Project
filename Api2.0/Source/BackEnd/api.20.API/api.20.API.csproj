@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Shared\Ap2.0.Communication\Ap2.0.Communication.csproj" />
     <ProjectReference Include="..\api2.0.Application\api2.0.Application.csproj" />
   </ItemGroup>
