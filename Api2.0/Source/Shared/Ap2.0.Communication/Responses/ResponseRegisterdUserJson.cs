@@ -8,6 +8,9 @@ namespace Ap2._0.Communication.Responses
 {
     public class ResponseRegisterdUserJson
     {
-        public string nome { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+
+        public string Password {  get; set; } = string.Empty;
     }
 }
