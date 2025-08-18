@@ -24,7 +24,7 @@ namespace api2._0.Application.UseCases.User.Register
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage);
                 throw new Exception();
 
-            } // integração com new git 
+            } 
         }
     }
 }
