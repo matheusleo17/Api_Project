@@ -1,6 +1,7 @@
 ﻿
 using Ap2._0.Communication.Requests;
 using Ap2._0.Communication.Responses;
+using Api2._0.Exceptions.BaseExceptions;
 
 namespace api2._0.Application.UseCases.User.Register
 {
@@ -21,8 +22,9 @@ namespace api2._0.Application.UseCases.User.Register
             var result = validator.Validate(request);
             if (result.IsValid == false)
             {
-                var errorMessages = result.Errors.Select(e => e.ErrorMessage);
-                throw new Exception();
+                var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+                throw new ErrorOnValidationException(errorMessages);
 
             } 
         }

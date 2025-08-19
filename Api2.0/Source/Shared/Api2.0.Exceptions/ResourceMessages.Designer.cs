@@ -95,5 +95,14 @@ namespace Api2._0.Exceptions {
                 return ResourceManager.GetString("PASSWORD_INVALID", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro desconhecido..
+        /// </summary>
+        public static string UNKNOW_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
+            }
+        }
     }
 }
