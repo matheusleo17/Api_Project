@@ -37,7 +37,7 @@ namespace api._20.API.Filters
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Result = new ObjectResult(new ReponseErrorJson(ResourceMessages.UNKNOW_ERROR));
             }
-        }
+        } // sincronização de repositorios
     }
 
 
