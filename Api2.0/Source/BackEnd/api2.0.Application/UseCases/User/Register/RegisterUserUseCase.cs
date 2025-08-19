@@ -1,6 +1,7 @@
 ﻿
 using Ap2._0.Communication.Requests;
 using Ap2._0.Communication.Responses;
+using api2._0.Application.Services.AutoMapper;
 using Api2._0.Exceptions.BaseExceptions;
 
 namespace api2._0.Application.UseCases.User.Register
@@ -10,6 +11,13 @@ namespace api2._0.Application.UseCases.User.Register
         public ResponseRegisterdUserJson Execute(RequestRegisterUserJson request)
         {
             Validate(request);
+            var autoMapper = new AutoMapper.MapperConfiguration(options =>
+            {
+                options.AddProfile(new AutoMapping());
+
+            }).CreateMapper();
+
+            var user = autoMapper.Map<Api2._0.Domain.Entities.User>(request);
             return new ResponseRegisterdUserJson
             {
                 Name = request.Name,

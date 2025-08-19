@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
   </ItemGroup>
 
@@ -15,6 +16,7 @@
     <ProjectReference Include="..\..\Shared\Ap2.0.Communication\Ap2.0.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\Api2.0.Exceptions\Api2.0.Exceptions.csproj" />
     <ProjectReference Include="..\Api2.0.Domain\Api2.0.Domain.csproj" />
+    <ProjectReference Include="..\Api2.0.Infrascruture\Api2.0.Infrascruture.csproj" />
   </ItemGroup>
 
 </Project>
