@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.AccessControl;
 
-namespace api._20.API.Controllers
+namespace serverT2.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]

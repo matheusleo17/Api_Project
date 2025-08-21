@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using serverT2.Exceptions;
 using System.Net;
 
-namespace api._20.API.Filters
+namespace serverT2.API.Filters
 {
     public class FilterExceptions : IExceptionFilter
     {

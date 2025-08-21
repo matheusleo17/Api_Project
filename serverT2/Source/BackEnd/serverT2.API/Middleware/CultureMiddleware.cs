@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace api._20.API.Middleware
+namespace serverT2.API.Middleware
 {
     public class CultureMiddleware
     {
