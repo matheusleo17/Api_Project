@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api2._0.Infrascruture
+namespace serverT2.Infrascruture
 {
     internal class DependencyInjection
     {

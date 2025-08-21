@@ -1,5 +1,5 @@
-﻿using Api2._0.Domain.Entities;
-using Api2._0.Domain.Repository.User;
+﻿using serverT2.Domain.Entities;
+using serverT2.Domain.Repository.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api2._0.Infrascruture.DataAccess.Repository
+namespace serverT2.Infrascruture.DataAccess.Repository
 {
     public class UserRepository : IUserReadOnlyRespository, IUserWriteOnlyRespository
     {

@@ -1,6 +1,6 @@
-﻿using Api2._0.Domain.Entities;
+﻿using serverT2.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-namespace Api2._0.Infrascruture.DataAccess
+namespace serverT2.Infrascruture.DataAccess
 {
     public class AppDbContext : DbContext
     {

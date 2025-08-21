@@ -1,4 +1,4 @@
-﻿namespace Api2._0.Domain.Entities
+﻿namespace serverT2.Domain.Entities
 {
     public class EntityBase
     {

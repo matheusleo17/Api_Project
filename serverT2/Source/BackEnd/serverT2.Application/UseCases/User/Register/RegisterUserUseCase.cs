@@ -1,13 +1,13 @@
 ﻿
-using Ap2._0.Communication.Requests;
-using Ap2._0.Communication.Responses;
-using api2._0.Application.Services.AutoMapper;
-using api2._0.Application.Services.Criptography;
-using Api2._0.Domain.Repository.User;
-using Api2._0.Exceptions.BaseExceptions;
+using serverT2.Communication.Requests;
+using serverT2.Communication.Responses;
+using serverT2.Application.Services.AutoMapper;
+using serverT2.Application.Services.Criptography;
+using serverT2.Domain.Repository.User;
+using serverT2.Exceptions.BaseExceptions;
 using System.Security.AccessControl;
 
-namespace api2._0.Application.UseCases.User.Register
+namespace serverT2.Application.UseCases.User.Register
 {
     public class RegisterUserUseCase
     {
@@ -25,7 +25,7 @@ namespace api2._0.Application.UseCases.User.Register
 
             }).CreateMapper();
 
-            var user = autoMapper.Map<Api2._0.Domain.Entities.User>(request);
+            var user = autoMapper.Map<serverT2.Domain.Entities.User>(request);
             user.Password = cryptoPassword.Encrypt(request.Password);
             await _writeOnlyRepository.Add(user);
             return new ResponseRegisterdUserJson

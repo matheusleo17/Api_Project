@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace api2._0.Application.Services.Criptography
+namespace serverT2.Application.Services.Criptography
 {
     public class PasswordCryptography
     {

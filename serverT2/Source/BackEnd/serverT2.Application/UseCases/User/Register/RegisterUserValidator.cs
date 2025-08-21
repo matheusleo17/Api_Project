@@ -1,10 +1,10 @@
-﻿using Ap2._0.Communication.Requests;
-using Api2._0.Exceptions;
+﻿using serverT2.Communication.Requests;
+using serverT2.Exceptions;
 using FluentValidation;
 using serverT2.Exceptions;
 
 
-namespace api2._0.Application.UseCases.User.Register
+namespace serverT2.Application.UseCases.User.Register
 {
     public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
     {

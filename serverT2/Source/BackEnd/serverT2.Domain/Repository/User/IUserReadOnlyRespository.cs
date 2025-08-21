@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api2._0.Domain.Repository.User
+namespace serverT2.Domain.Repository.User
 {
     public interface IUserReadOnlyRespository
     {

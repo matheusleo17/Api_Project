@@ -1,10 +1,10 @@
-﻿using Ap2._0.Communication.Requests;
+﻿using serverT2.Communication.Requests;
 using AutoMapper;
-using Api2._0.Domain.Entities;
+using serverT2.Domain.Entities;
 using System.Security.Cryptography.X509Certificates;
 
 
-namespace api2._0.Application.Services.AutoMapper
+namespace serverT2.Application.Services.AutoMapper
 {
     public class AutoMapping : Profile
     {
@@ -14,7 +14,7 @@ namespace api2._0.Application.Services.AutoMapper
         }
         private void RequestDomain()
         {
-            CreateMap<RequestRegisterUserJson, Api2._0.Domain.Entities.User>()
+            CreateMap<RequestRegisterUserJson, serverT2.Domain.Entities.User>()
                 .ForMember(x => x.Password, opt=> opt.Ignore());
         }
     }

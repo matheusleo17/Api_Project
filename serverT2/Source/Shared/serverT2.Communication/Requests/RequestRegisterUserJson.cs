@@ -1,6 +1,6 @@
 ﻿
 
-namespace Ap2._0.Communication.Requests
+namespace serverT2.Communication.Requests
 {
     public class RequestRegisterUserJson
     {

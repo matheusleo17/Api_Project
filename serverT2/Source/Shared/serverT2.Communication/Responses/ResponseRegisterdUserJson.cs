@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ap2._0.Communication.Responses
+namespace serverT2.Communication.Responses
 {
     public class ResponseRegisterdUserJson
     {

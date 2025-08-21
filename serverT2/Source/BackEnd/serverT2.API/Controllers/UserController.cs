@@ -1,6 +1,6 @@
-﻿using Ap2._0.Communication.Requests;
-using Ap2._0.Communication.Responses;
-using api2._0.Application.UseCases.User.Register;
+﻿using serverT2.Communication.Requests;
+using serverT2.Communication.Responses;
+using serverT2.Application.UseCases.User.Register;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

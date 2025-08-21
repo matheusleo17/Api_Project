@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api2._0.Exceptions.BaseExceptions
+namespace serverT2.Exceptions.BaseExceptions
 {
     public class ErrorOnValidationException : FileBookException
     {
