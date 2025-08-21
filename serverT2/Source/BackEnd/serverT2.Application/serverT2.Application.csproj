@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>serverT2.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Ap2..Communication\Ap2.0.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\serverT2.Exceptions\serverT2.Exceptions.csproj" />
+    <ProjectReference Include="..\serverT2.Domain\serverT2.Domain.csproj" />
+    <ProjectReference Include="..\serverT2.Infrascruture\serverT2.Infrascruture.csproj" />
+  </ItemGroup>
+
+</Project>
