@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BackEnd\serverT2.Domain\serverT2.Domain.csproj" />
+    <ProjectReference Include="..\serverT2.Communication\serverT2.Communication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="ResourceMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

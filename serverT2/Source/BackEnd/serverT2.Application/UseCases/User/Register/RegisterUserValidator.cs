@@ -1,6 +1,7 @@
 ﻿using Ap2._0.Communication.Requests;
 using Api2._0.Exceptions;
 using FluentValidation;
+using serverT2.Exceptions;
 
 
 namespace api2._0.Application.UseCases.User.Register
