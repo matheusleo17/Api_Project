@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using serverT2.Infrastructure.DataAccess;
+using serverT2.Domain.Repository;
 
 namespace serverT2.Infrastructure
 {
@@ -30,6 +31,7 @@ namespace serverT2.Infrastructure
         {
             services.AddScoped<IUserWriteOnlyRespository, UserRepository>();
             services.AddScoped<IUserReadOnlyRespository, UserRepository>();
+            services.AddScoped<IUnityOfWork, UnityOfWork>();
         }
 
     }

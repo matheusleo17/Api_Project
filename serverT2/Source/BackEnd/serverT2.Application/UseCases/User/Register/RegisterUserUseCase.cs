@@ -7,6 +7,7 @@ using serverT2.Domain.Repository.User;
 using serverT2.Exceptions.BaseExceptions;
 using System.Security.AccessControl;
 using AutoMapper;
+using serverT2.Domain.Repository;
 
 namespace serverT2.Application.UseCases.User.Register
 {
@@ -15,14 +16,17 @@ namespace serverT2.Application.UseCases.User.Register
         private readonly IUserWriteOnlyRespository _writeOnlyRepository;
         private readonly IUserReadOnlyRespository _readOnlyRepository;
         private readonly IMapper _mapper;
+        private readonly IUnityOfWork _unityOfWork;
             public RegisterUserUseCase(
                 IUserWriteOnlyRespository writeOnlyRepository,
                 IUserReadOnlyRespository readOnlyRepository,
-                IMapper mapper)
+                IMapper mapper,
+                IUnityOfWork unityOfWork)
              {
                 _writeOnlyRepository = writeOnlyRepository;
                 _readOnlyRepository = readOnlyRepository;
                 _mapper = mapper;
+                _unityOfWork = unityOfWork;
              }  
 
         public async Task<ResponseRegisterdUserJson> Execute(RequestRegisterUserJson request)
@@ -34,6 +38,7 @@ namespace serverT2.Application.UseCases.User.Register
             var user = _mapper.Map<serverT2.Domain.Entities.User>(request);
             user.Password = cryptoPassword.Encrypt(request.Password);
             await _writeOnlyRepository.Add(user);
+            await _unityOfWork.Commit();
             return new ResponseRegisterdUserJson
             {
                 Name = request.Name,
