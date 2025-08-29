@@ -21,7 +21,7 @@
     <ProjectReference Include="..\..\Shared\serverT2.Communication\serverT2.Communication.csproj" />
     <ProjectReference Include="..\serverT2.Application\serverT2.Application.csproj" />
     <ProjectReference Include="..\serverT2.Domain\serverT2.Domain.csproj" />
-    <ProjectReference Include="..\serverT2.Infrascruture\serverT2.Infrascruture.csproj" />
+	<ProjectReference Include="..\serverT2.Infrastructure\serverT2.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

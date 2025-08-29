@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using serverT2.Infrastructure.DataAccess;
 
 namespace serverT2.Infrastructure
 {
@@ -16,11 +17,10 @@ namespace serverT2.Infrastructure
         public static void AddInfrastructure(this IServiceCollection services)
         {
             addRepositories(services);
-            addDbContext(services);  
-
+            addDbContext(services);
 
         }
-
+        
         private static void addDbContext(IServiceCollection services)
         {
             var connectionString = "Data Source = (localdb)\\mssqllocaldb; Initial Catalog =ServerT2; Trusted_Connection=True; Encrypt=True; TrustServerCertificate=True;";

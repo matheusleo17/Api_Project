@@ -14,11 +14,10 @@ namespace serverT2.API.Controllers
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisterdUserJson),StatusCodes.Status201Created)]
-        public IActionResult add(RequestRegisterUserJson request)
+        public async Task<IActionResult> add(IRegisterUseCase usecase, [FromBody] RequestRegisterUserJson request)
         {
-            var usecase = new RegisterUserUseCase();
 
-            var result = usecase.Execute(request);
+            var result = await usecase.Execute(request);
             
             return Created(string.Empty, result);
         }
