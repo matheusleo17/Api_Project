@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using serverT2.Infrastructure.DataAccess;
 using serverT2.Domain.Repository;
+using Microsoft.Extensions.Configuration;
 
 namespace serverT2.Infrastructure
 {
     public static class DependencyInjection
     {
-        public static void AddInfrastructure(this IServiceCollection services)
+        public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             addRepositories(services);
             addDbContext(services);
@@ -24,7 +25,7 @@ namespace serverT2.Infrastructure
         
         private static void addDbContext(IServiceCollection services)
         {
-            var connectionString = "Data Source = (localdb)\\mssqllocaldb; Initial Catalog =ServerT2; Trusted_Connection=True; Encrypt=True; TrustServerCertificate=True;";
+            var connectionString = "";
             services.AddDbContext<AppDbContext>(dbContextOptions =>dbContextOptions.UseSqlServer(connectionString));
         }
         private static void addRepositories(IServiceCollection services)
