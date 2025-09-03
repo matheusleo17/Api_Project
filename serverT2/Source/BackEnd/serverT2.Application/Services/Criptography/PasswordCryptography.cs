@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Internal;
+using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -6,10 +7,13 @@ namespace serverT2.Application.Services.Criptography
 {
     public class PasswordCryptography
     {
+        private readonly string _additionalKey;
+        public PasswordCryptography(string additionalKey) { 
+            _additionalKey = additionalKey;
+        }
         public string Encrypt(string password) 
         {
-            var keyadd = "ABC";
-            var newpassword = $"p{password}{keyadd}";
+            var newpassword = $"p{password}{_additionalKey}";
             var bytes = Encoding.UTF8.GetBytes(newpassword);
             var hashBytes = SHA512.HashData(bytes);
 

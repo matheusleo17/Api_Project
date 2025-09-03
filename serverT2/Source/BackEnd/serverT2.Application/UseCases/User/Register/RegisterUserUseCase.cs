@@ -1,13 +1,15 @@
 ﻿
-using serverT2.Communication.Requests;
-using serverT2.Communication.Responses;
+using AutoMapper;
 using serverT2.Application.Services.AutoMapper;
 using serverT2.Application.Services.Criptography;
-using serverT2.Domain.Repository.User;
-using serverT2.Exceptions.BaseExceptions;
-using System.Security.AccessControl;
-using AutoMapper;
+using serverT2.Communication.Requests;
+using serverT2.Communication.Responses;
 using serverT2.Domain.Repository;
+using serverT2.Domain.Repository.User;
+using serverT2.Domain.Security.Cryptography;
+using serverT2.Exceptions.BaseExceptions;
+using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 
 namespace serverT2.Application.UseCases.User.Register
 {
@@ -17,26 +19,28 @@ namespace serverT2.Application.UseCases.User.Register
         private readonly IUserReadOnlyRespository _readOnlyRepository;
         private readonly IMapper _mapper;
         private readonly IUnityOfWork _unityOfWork;
-            public RegisterUserUseCase(
+        private readonly IPasswordEncripter _passwordCryptography;
+        public RegisterUserUseCase(
                 IUserWriteOnlyRespository writeOnlyRepository,
                 IUserReadOnlyRespository readOnlyRepository,
                 IMapper mapper,
-                IUnityOfWork unityOfWork)
-             {
-                _writeOnlyRepository = writeOnlyRepository;
-                _readOnlyRepository = readOnlyRepository;
-                _mapper = mapper;
-                _unityOfWork = unityOfWork;
-             }  
+                IUnityOfWork unityOfWork,
+                IPasswordEncripter passwordCryptography)
+        {
+            _writeOnlyRepository = writeOnlyRepository;
+            _readOnlyRepository = readOnlyRepository;
+            _mapper = mapper;
+            _unityOfWork = unityOfWork;
+            _passwordCryptography = passwordCryptography;
+        }  
 
         public async Task<ResponseRegisterdUserJson> Execute(RequestRegisterUserJson request)
         {
-            var cryptoPassword = new PasswordCryptography();
 
             Validate(request);
 
             var user = _mapper.Map<serverT2.Domain.Entities.User>(request);
-            user.Password = cryptoPassword.Encrypt(request.Password);
+            user.Password = _passwordCryptography.Encrypt(request.Password);
             await _writeOnlyRepository.Add(user);
             await _unityOfWork.Commit();
             return new ResponseRegisterdUserJson
