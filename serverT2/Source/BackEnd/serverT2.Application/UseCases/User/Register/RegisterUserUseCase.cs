@@ -7,6 +7,7 @@ using serverT2.Communication.Responses;
 using serverT2.Domain.Repository;
 using serverT2.Domain.Repository.User;
 using serverT2.Domain.Security.Cryptography;
+using serverT2.Exceptions;
 using serverT2.Exceptions.BaseExceptions;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
@@ -48,11 +49,18 @@ namespace serverT2.Application.UseCases.User.Register
                 Name = request.Name,
             };
         }
-        private void Validate(RequestRegisterUserJson request)
+        private async void Validate(RequestRegisterUserJson request)
         {
             var validator = new RegisterUserValidator();
-
             var result = validator.Validate(request);
+
+            var emailExists = await _readOnlyRepository.ExistsActiveUserEmail(request.Email);
+
+            if(emailExists)
+            {
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessages.EMAIL_EMPTY));
+            }
+
             if (result.IsValid == false)
             {
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
