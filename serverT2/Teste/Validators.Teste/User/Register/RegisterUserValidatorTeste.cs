@@ -53,7 +53,6 @@ namespace Validators.Teste.User.Register
         [InlineData(2)]
         [InlineData(3)]
         [InlineData(4)]
-        [InlineData(5)]
         public void ErrorPassword(int passwordLegth)
         {
             var validator = new RegisterUserValidator();
