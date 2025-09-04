@@ -41,12 +41,16 @@ namespace serverT2.Application.UseCases.User.Register
             Validate(request);
 
             var user = _mapper.Map<serverT2.Domain.Entities.User>(request);
+
             user.Password = _passwordCryptography.Encrypt(request.Password);
+
             await _writeOnlyRepository.Add(user);
+
             await _unityOfWork.Commit();
+
             return new ResponseRegisterdUserJson
             {
-                Name = request.Name,
+                Name = user.Name,
             };
         }
         private async void Validate(RequestRegisterUserJson request)
