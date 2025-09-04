@@ -30,7 +30,8 @@ namespace serverT2.Application
         private static void AddCriptography(this IServiceCollection services, IConfiguration configuration)
         {
             var additionalKey = configuration.GetSection("Settings:Password:AdditionalKey").Value;
-            services.AddScoped(option => new PasswordCryptography(additionalKey));
+            services.AddScoped<IPasswordEncripter>(sp => new PasswordCryptography(additionalKey));
         }
+
     }
 }

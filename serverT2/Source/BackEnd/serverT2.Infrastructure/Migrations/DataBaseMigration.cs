@@ -1,13 +1,16 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+using FluentMigrator.Runner;
 
 namespace serverT2.Infrastructure.Migration
 {
     public static class DataBaseMigration
     {
-        public static void Migration(string connectionString)
+        public static void Migration(string connectionString, IServiceProvider serviceProvider)
         {
             EnsureDataBaseCreated(connectionString);
+            MigrateDataBase(serviceProvider);
         }
 
         private static void EnsureDataBaseCreated(string connectionString)
@@ -31,6 +34,13 @@ namespace serverT2.Infrastructure.Migration
             }
 
 
+        }
+        private static void MigrateDataBase(IServiceProvider serviceProvider)
+        {
+            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+
+            runner.ListMigrations();
+            runner.MigrateUp();
         }
     }
 }

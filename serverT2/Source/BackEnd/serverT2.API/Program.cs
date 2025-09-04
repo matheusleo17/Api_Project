@@ -1,7 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
 using serverT2.API.Filters;
 using serverT2.API.Middleware;
 using serverT2.Application;
 using serverT2.Infrastructure;
+using serverT2.Infrastructure.Extensions;
+using serverT2.Infrastructure.Migration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,9 +28,18 @@ if (app.Environment.IsDevelopment())
 }
 app.UseMiddleware<CultureMiddleware>();
 app.UseHttpsRedirection();
+migrateDatabase();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+
+void migrateDatabase()
+{
+    var connectionString = builder.Configuration.ConnetionString();
+    var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+    DataBaseMigration.Migration(connectionString, serviceScope.ServiceProvider);
+}

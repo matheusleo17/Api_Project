@@ -1,11 +1,12 @@
 ﻿using FluentValidation.Internal;
+using serverT2.Domain.Security.Cryptography;
 using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace serverT2.Application.Services.Criptography
 {
-    public class PasswordCryptography
+    public class PasswordCryptography : IPasswordEncripter
     {
         private readonly string _additionalKey;
         public PasswordCryptography(string additionalKey) { 
@@ -30,6 +31,11 @@ namespace serverT2.Application.Services.Criptography
                 sb.Append(hex);
             }
             return sb.ToString();
+        }
+        public bool IsValid(string password, string hashedPassword)
+        {
+            var encrypted = Encrypt(password);
+            return encrypted == hashedPassword;
         }
     }
 }
