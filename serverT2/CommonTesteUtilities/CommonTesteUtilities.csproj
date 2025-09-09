@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Bogus" Version="35.6.3" />
+    <PackageReference Include="FluentAssertions" Version="8.6.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Source\Shared\serverT2.Communication\serverT2.Communication.csproj" />
+    <ProjectReference Include="..\Source\BackEnd\serverT2.Application\serverT2.Application.csproj" />
   </ItemGroup>
 
 </Project>

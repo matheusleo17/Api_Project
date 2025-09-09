@@ -1,4 +1,6 @@
-﻿using CommonTesteUtilities.Requests;
+﻿using CommonTesteUtilities.Cryptography;
+using CommonTesteUtilities.Mapper;
+using CommonTesteUtilities.Requests;
 using FluentAssertions;
 using Microsoft.Identity.Client;
 using serverT2.Application.UseCases.User.Register;
@@ -11,8 +13,9 @@ namespace useCaseTest.User.Register
         public async Task Success()
         {
             var request = RequestRegisterUserJsonBuilder.Build();
-
-            var useCase = new RegisterUserUseCase();
+            var mapper = MapperBuilder.Build();
+            var passwordEncripter = PasswordEncripterBuilder.Build();
+            var useCase = new RegisterUserUseCase(passwordEncripter,mapper);
 
              var result = await useCase.Execute(request);
 
