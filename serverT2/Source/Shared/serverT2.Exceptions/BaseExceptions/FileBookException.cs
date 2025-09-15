@@ -8,5 +8,8 @@ namespace serverT2.Exceptions.BaseExceptions
 {
     public class FileBookException : SystemException
     {
+        public FileBookException(string message) : base(message)
+        {
+        }
     }
 }

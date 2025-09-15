@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace serverT2.Exceptions.BaseExceptions
+﻿namespace serverT2.Exceptions.BaseExceptions
 {
     public class ErrorOnValidationException : FileBookException
     {
-        public IList<string> Errors { get; set; }  
+        public IList<string> errorsMessage { get; set; }
+
+
         
-        public ErrorOnValidationException(IList<string> errors)
+        public ErrorOnValidationException(IList<string> errors) : base(string.Empty)
         {
-            Errors = errors;
+            errorsMessage = errors;
         }
     }
 }

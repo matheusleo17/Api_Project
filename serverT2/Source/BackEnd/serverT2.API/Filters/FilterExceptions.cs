@@ -28,7 +28,7 @@ namespace serverT2.API.Filters
             {
                 var exception = context.Exception as ErrorOnValidationException;
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new BadRequestObjectResult(new ReponseErrorJson(exception.Errors));
+                context.Result = new BadRequestObjectResult(new ReponseErrorJson(exception.errorsMessage));
             }
         }
         private void ThrowUnknowException(ExceptionContext context)
