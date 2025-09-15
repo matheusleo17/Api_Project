@@ -38,7 +38,7 @@ namespace serverT2.Application.UseCases.User.Register
         public async Task<ResponseRegisterdUserJson> Execute(RequestRegisterUserJson request)
         {
 
-            Validate(request);
+            await Validate(request);
 
             var user = _mapper.Map<serverT2.Domain.Entities.User>(request);
 
@@ -53,7 +53,7 @@ namespace serverT2.Application.UseCases.User.Register
                 Name = user.Name,
             };
         }
-        private async void Validate(RequestRegisterUserJson request)
+        private async Task Validate(RequestRegisterUserJson request)
         {
             var validator = new RegisterUserValidator();
             var result = validator.Validate(request);
