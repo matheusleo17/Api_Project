@@ -1,19 +1,23 @@
-﻿using CommonTesteUtilities.Requests;
+﻿using Azure;
+using CommonTesteUtilities.Requests;
 using FluentAssertions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Testing;
+using serverT2.Exceptions;
+using System.Globalization;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
+using WebApi.Test.InlineData;
 
 namespace WebApi.Test.User.Register
 {
-    public class RegisterUserTest : IClassFixture<WebApplicationFactory<Program>>
+    public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly HttpClient _httpClient;
-        public RegisterUserTest(WebApplicationFactory<Program> factory) 
+        public RegisterUserTest(CustomWebApplicationFactory factory)
         {
-           _httpClient = factory.CreateClient();
+            _httpClient = factory.CreateClient();
         }
         [Fact]
         public async Task Success()
@@ -27,6 +31,34 @@ namespace WebApi.Test.User.Register
             var responseData = await JsonDocument.ParseAsync(reponseBody);
 
             responseData.RootElement.GetProperty("name").GetString().Should().NotBeNullOrWhiteSpace().And.Be(request.Name);
+        }
+        [Theory]
+        [ClassData(typeof(CultureInlineDataTest))]
+        public async Task Error_Empty_Name(string culture)
+        {
+            var request = RequestRegisterUserJsonBuilder.Build();
+            request.Name = string.Empty;
+
+            if (_httpClient.DefaultRequestHeaders.Contains("Accept-Language"))
+            {
+                _httpClient.DefaultRequestHeaders.Remove("Accept-Language");
+            }
+            _httpClient.DefaultRequestHeaders.Add("Accept-Language", culture);
+
+            var response = await _httpClient.PostAsJsonAsync("User", request);
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            await using var reponseBody = await response.Content.ReadAsStreamAsync();
+
+            var responseData = await JsonDocument.ParseAsync(reponseBody);
+
+            var errors = responseData.RootElement.GetProperty("errors").EnumerateArray();
+
+            var message = ResourceMessages.ResourceManager.GetString("NAME_EMPTY",new CultureInfo(culture));
+
+            errors.Should().ContainSingle().And.Contain(Error=> Error.GetString()!.Equals(message));
+
+
         }
     }
 }
