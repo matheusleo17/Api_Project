@@ -10,16 +10,20 @@ namespace serverT2.API.Middleware
         {
             _requestDelegate = requestDelegate;
         }
-        public async Task Invoke (HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
-            var supportedLan = CultureInfo.GetCultures(CultureTypes.AllCultures);
-            var requestCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
+            var supportedCultures = CultureInfo.GetCultures(CultureTypes.AllCultures)
+                                               .Select(c => c.Name.ToLower())
+                                               .ToHashSet();
+
+            var requestedCulture = context.Request.Headers["Accept-Language"].FirstOrDefault();
 
             var cultureInfo = new CultureInfo("pt-BR");
 
-            if(string.IsNullOrEmpty(requestCulture) == false && supportedLan.Any(c=>c.Name.Equals(requestCulture)))
+            if (!string.IsNullOrEmpty(requestedCulture) &&
+                supportedCultures.Contains(requestedCulture.ToLower()))
             {
-                var cultureinfo = new CultureInfo(requestCulture);
+                cultureInfo = new CultureInfo(requestedCulture);
             }
 
             CultureInfo.CurrentCulture = cultureInfo;
