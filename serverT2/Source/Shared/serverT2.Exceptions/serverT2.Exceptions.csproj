@@ -1,30 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>serverT2.Exceptions</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>serverT2.Exceptions</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\BackEnd\serverT2.Domain\serverT2.Domain.csproj" />
-    <ProjectReference Include="..\serverT2.Communication\serverT2.Communication.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\BackEnd\serverT2.Domain\serverT2.Domain.csproj" />
+		<ProjectReference Include="..\serverT2.Communication\serverT2.Communication.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="ResourceMessages.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ResourceMessages.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="ResourceMessages.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>ResourceMessages.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 
-  <ItemGroup>
-    <EmbeddedResource Update="ResourceMessages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+		<EmbeddedResource Include="ResourceMessages.*.resx" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="ResourceMessages.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ResourceMessages.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
 </Project>
