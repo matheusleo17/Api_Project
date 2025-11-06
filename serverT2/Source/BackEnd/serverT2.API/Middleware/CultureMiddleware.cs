@@ -21,8 +21,7 @@ namespace serverT2.API.Middleware
 
             var cultureInfo = new CultureInfo("pt-BR");
 
-            if (string.IsNullOrEmpty(requestedCulture).IsFalse() &&
-                supportedCultures.Contains(requestedCulture!.ToLower()))
+            if (requestedCulture.NotEmpty() && supportedCultures.Contains(requestedCulture.ToLower()))
             {
                 cultureInfo = new CultureInfo(requestedCulture);
             }

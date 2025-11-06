@@ -17,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
-
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 var app = builder.Build();
 var supportedCultures = new[] { "en", "pt-BR", "pt-PT" };
 
