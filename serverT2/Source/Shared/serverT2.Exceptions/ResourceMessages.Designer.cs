@@ -70,7 +70,7 @@ namespace serverT2.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo nome não pode ser nulo..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo e-mail esta incorreto..
         /// </summary>
         public static string EMAIL_INVALID {
             get {
@@ -79,7 +79,7 @@ namespace serverT2.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo e-mail esta incorreto..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo nome não pode ser nulo..
         /// </summary>
         public static string NAME_EMPTY {
             get {

@@ -121,10 +121,10 @@
     <value>O campo e-mail não pode ser nulo.</value>
   </data>
   <data name="EMAIL_INVALID" xml:space="preserve">
-    <value>O campo nome não pode ser nulo.</value>
+    <value>O campo e-mail esta incorreto.</value>
   </data>
   <data name="NAME_EMPTY" xml:space="preserve">
-    <value>O campo e-mail esta incorreto.</value>
+    <value>O campo nome não pode ser nulo.</value>
   </data>
   <data name="PASSWORD_INVALID" xml:space="preserve">
     <value>Senha invalida.</value>
