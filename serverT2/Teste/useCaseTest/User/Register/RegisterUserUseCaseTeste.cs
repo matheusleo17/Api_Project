@@ -39,6 +39,8 @@ namespace useCaseTest.User.Register
                 .Where(e => e.errorsMessage.Count == 1 && e.errorsMessage.Contains(ResourceMessages.EMAIL_EMPTY));
 
         }
+
+        [Fact]
         public async Task ErrorNameAlreadyRegisted()
         {
             var request = RequestRegisterUserJsonBuilder.Build();
