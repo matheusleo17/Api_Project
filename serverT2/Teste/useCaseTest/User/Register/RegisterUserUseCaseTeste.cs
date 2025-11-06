@@ -53,7 +53,7 @@ namespace useCaseTest.User.Register
 
         }
 
-        private RegisterUserUseCase CreateUseCase(string? email = null)
+        private static RegisterUserUseCase CreateUseCase(string? email = null)
         {
             var request = RequestRegisterUserJsonBuilder.Build();
             var mapper = MapperBuilder.Build();

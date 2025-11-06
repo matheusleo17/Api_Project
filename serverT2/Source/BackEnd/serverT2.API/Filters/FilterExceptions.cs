@@ -22,16 +22,16 @@ namespace serverT2.API.Filters
 
             }
         }
-        private void HandleProjectException(ExceptionContext context)
+        private static void HandleProjectException(ExceptionContext context)
         {
             if(context.Exception is ErrorOnValidationException)
             {
                 var exception = context.Exception as ErrorOnValidationException;
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new BadRequestObjectResult(new ReponseErrorJson(exception.errorsMessage));
+                context.Result = new BadRequestObjectResult(new ReponseErrorJson(exception!.errorsMessage));
             }
         }
-        private void ThrowUnknowException(ExceptionContext context)
+        private static void ThrowUnknowException(ExceptionContext context)
         {
             if (context.Exception is ErrorOnValidationException)
             {

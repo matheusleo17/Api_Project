@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using serverT2.Domain.Extensions;
+using System.Globalization;
 
 namespace serverT2.API.Middleware
 {
@@ -20,8 +21,8 @@ namespace serverT2.API.Middleware
 
             var cultureInfo = new CultureInfo("pt-BR");
 
-            if (!string.IsNullOrEmpty(requestedCulture) &&
-                supportedCultures.Contains(requestedCulture.ToLower()))
+            if (string.IsNullOrEmpty(requestedCulture).IsFalse() &&
+                supportedCultures.Contains(requestedCulture!.ToLower()))
             {
                 cultureInfo = new CultureInfo(requestedCulture);
             }
