@@ -35,6 +35,14 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+var supportedCultures = new[] { "en", "pt-BR", "pt-PT" };
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("en")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 
 void migrateDatabase()
