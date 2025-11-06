@@ -38,6 +38,8 @@ namespace WebApi.Test.User.Register
         {
             var request = RequestRegisterUserJsonBuilder.Build();
             request.Name = string.Empty;
+            request.Email = "valid@email.com"; // impede erro inesperado
+
 
             if (_httpClient.DefaultRequestHeaders.Contains("Accept-Language"))
             {
