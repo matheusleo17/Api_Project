@@ -18,7 +18,6 @@
 			<LastGenOutput>ResourceMessages.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 
-		<EmbeddedResource Include="ResourceMessages.*.resx" />
 	</ItemGroup>
 
 	<ItemGroup>
