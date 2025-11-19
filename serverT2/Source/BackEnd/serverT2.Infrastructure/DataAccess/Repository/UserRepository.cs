@@ -28,5 +28,13 @@ namespace serverT2.Infrascruture.DataAccess.Repository
         {
             return await _appDbContext.Users.AnyAsync(x => x.Email.Equals(Email) && x.Active);
         }
+
+        public async Task<User?> GetbyEmailAndPassword(string email, string password)
+        {
+            return await _appDbContext
+                .Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(_ => _.Active && _.Email == email && _.Password.Equals(password));
+        }
     }
 }
