@@ -4,6 +4,7 @@ using serverT2.Application.Services.AutoMapper;
 using serverT2.Application.Services.Criptography;
 using serverT2.Communication.Requests;
 using serverT2.Communication.Responses;
+using serverT2.Domain.Extensions;
 using serverT2.Domain.Repository;
 using serverT2.Domain.Repository.User;
 using serverT2.Domain.Security.Cryptography;
@@ -56,22 +57,19 @@ namespace serverT2.Application.UseCases.User.Register
         private async Task Validate(RequestRegisterUserJson request)
         {
             var validator = new RegisterUserValidator();
-            var result = validator.Validate(request);
 
-            var emailExists = await _readOnlyRepository.ExistsActiveUserEmail(request.Email);
+            var result = await validator.ValidateAsync(request);
 
-            if(emailExists)
-            {
-                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessages.EMAIL_EMPTY));
-            }
+            var emailExist = await _readOnlyRepository.ExistsActiveUserEmail(request.Email);
+            if (emailExist)
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessages.EMAIL_ALREADY_REGISTERED));
 
-            if (result.IsValid == false)
+            if (result.IsValid.IsFalse())
             {
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
 
                 throw new ErrorOnValidationException(errorMessages);
-
-            } 
+            }
         }
     }
 }

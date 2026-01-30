@@ -1,12 +1,12 @@
 ﻿
 namespace serverT2.Communication.Responses
 {
-    public class ReponseErrorJson
+    public class ResponseErrorJson
     {
         public IList<string> Errors { get; set; }   
-        public ReponseErrorJson(IList<string> errors) => Errors = errors;
+        public ResponseErrorJson(IList<string> errors) => Errors = errors;
 
-        public ReponseErrorJson(string error)
+        public ResponseErrorJson(string error)
         {
             Errors = new List<string>
             {

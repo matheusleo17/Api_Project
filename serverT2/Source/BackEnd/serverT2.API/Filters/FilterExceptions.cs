@@ -1,9 +1,8 @@
-﻿using serverT2.Communication.Responses;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using serverT2.Communication.Responses;
 using serverT2.Exceptions;
 using serverT2.Exceptions.BaseExceptions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using serverT2.Exceptions;
 using System.Net;
 
 namespace serverT2.API.Filters
@@ -24,11 +23,16 @@ namespace serverT2.API.Filters
         }
         private static void HandleProjectException(ExceptionContext context)
         {
-            if(context.Exception is ErrorOnValidationException)
+            if(context.Exception is InvalidLoginException)
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(context.Exception.Message));
+            }
+            else if (context.Exception is ErrorOnValidationException)
             {
                 var exception = context.Exception as ErrorOnValidationException;
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = new BadRequestObjectResult(new ReponseErrorJson(exception!.errorsMessage));
+                context.Result = new BadRequestObjectResult(new ResponseErrorJson(exception!.errorsMessage));
             }
         }
         private static void ThrowUnknowException(ExceptionContext context)
@@ -36,9 +40,9 @@ namespace serverT2.API.Filters
             if (context.Exception is ErrorOnValidationException)
             {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                context.Result = new ObjectResult(new ReponseErrorJson(ResourceMessages.UNKNOW_ERROR));
+                context.Result = new ObjectResult(new ResponseErrorJson(ResourceMessages.UNKNOW_ERROR));
             }
-        } // sincronização de repositorios
+        } 
     }
 
 

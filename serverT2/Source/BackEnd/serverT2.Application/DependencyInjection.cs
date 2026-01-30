@@ -4,6 +4,7 @@ using serverT2.Application.UseCases.User.Register;
 using serverT2.Application.Services.Criptography;
 using Microsoft.Extensions.Configuration;
 using serverT2.Domain.Security.Cryptography;
+using serverT2.Application.UseCases.Login.DoLogin;
 
 namespace serverT2.Application
 {
@@ -18,6 +19,7 @@ namespace serverT2.Application
         private static void AddUseCases( IServiceCollection services)
         {
             services.AddScoped<IRegisterUseCase, RegisterUserUseCase>();
+            services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         }
         private static void AddAutoMapper (IServiceCollection services)
         {

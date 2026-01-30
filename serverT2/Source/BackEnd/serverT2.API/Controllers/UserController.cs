@@ -8,9 +8,8 @@ using System.Security.AccessControl;
 
 namespace serverT2.API.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+
+    public class UserController : ServerT2BaseController
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisterdUserJson),StatusCodes.Status201Created)]
